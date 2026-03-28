@@ -4,36 +4,34 @@ import "./globals.css";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-cairo",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mrahmedwebsite.vercel.app"),
   title: {
-    default: "أحمد عيد | مواقع احترافية وأنظمة أعمال ذكية",
+    default: "Ahmed Eid | أحمد عيد",
     template: "%s | Ahmed Eid",
   },
   description:
-    "موقع أحمد عيد الشخصي لعرض خدمات تطوير المواقع، الأنظمة المخصصة، الأتمتة، والاستشارات التقنية للشركات ورواد الأعمال في مصر والخليج.",
+    "أحمد عيد - مستشار تقني ومطور حلول رقمية وأنظمة أعمال مخصصة للشركات ورواد الأعمال في مصر والخليج.",
   keywords: [
-    "أحمد عيد",
     "Ahmed Eid",
-    "تطوير مواقع",
-    "متاجر إلكترونية",
+    "أحمد عيد",
+    "مطور مواقع",
+    "تطوير متاجر إلكترونية",
     "أنظمة ERP",
     "أتمتة الأعمال",
-    "لوحات تحكم",
+    "Business Automation",
+    "Custom ERP",
     "Next.js",
-    "حلول رقمية",
+    "Laravel",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL("https://mrahmedwebsite.vercel.app"),
   openGraph: {
-    title: "أحمد عيد | مواقع احترافية وأنظمة أعمال ذكية",
+    title: "Ahmed Eid | أحمد عيد",
     description:
-      "مطور حلول رقمية يساعد الشركات في بناء مواقع احترافية، أنظمة تشغيل داخلية، وأتمتة قابلة للتوسع.",
+      "موقع شخصي احترافي يعرض خدمات أحمد عيد في تطوير المواقع، الأنظمة المخصصة، وأتمتة الأعمال.",
     url: "https://mrahmedwebsite.vercel.app",
     siteName: "Ahmed Eid",
     locale: "ar_EG",
@@ -41,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "أحمد عيد | مواقع احترافية وأنظمة أعمال ذكية",
+    title: "Ahmed Eid | أحمد عيد",
     description:
-      "حلول رقمية وأنظمة أعمال ذكية للشركات ورواد الأعمال في مصر والخليج.",
+      "مستشار تقني ومطور حلول رقمية وأنظمة أعمال مخصصة للشركات ورواد الأعمال.",
   },
   robots: {
     index: true,
@@ -58,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <body className={`${cairo.variable} bg-background text-foreground antialiased`}>
+      <body className={`${cairo.variable} bg-background text-foreground`}>
         {children}
       </body>
     </html>

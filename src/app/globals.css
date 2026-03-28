@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: #02040c;
+  color: #e5eefc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+.container-shell {
+  @apply mx-auto max-w-7xl px-6 lg:px-8;
+}
+
+.card-surface {
+  @apply rounded-3xl border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(2,8,23,0.45)] backdrop-blur;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-100;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:border-cyan-300/40 hover:bg-white/10;
+}

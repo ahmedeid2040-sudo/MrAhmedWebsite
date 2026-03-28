@@ -1,58 +1,81 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { SectionTitle, SiteShell } from '@/components/site-shell';
+import { BarChart3, Boxes, Globe, ReceiptText, ShieldCheck, Workflow } from "lucide-react";
+import { SectionTitle, SiteShell } from "@/components/site-shell";
 
-export const metadata: Metadata = {
-  title: 'الخدمات',
-  description: 'خدمات أحمد عيد في بناء المواقع والأنظمة والأتمتة والاستشارات التشغيلية.',
-  alternates: { canonical: '/services' },
-};
-
-const blocks = [
+const services = [
   {
-    title: 'مواقع وهوية رقمية تخدم البيع',
-    points: ['واجهة فخمة وسريعة', 'نسخة عربية موجّهة للقرار', 'صفحات منظمة وقابلة للأرشفة', 'جاهزية للتوسعة لاحقًا'],
+    icon: Globe,
+    title: "مواقع شخصية وتجارية عالية التحويل",
+    copy:
+      "تصميم وتطوير مواقع حديثة سريعة جدًا، مرتبة المحتوى، وقوية في الإقناع، بحيث تصبح أداة بيع حقيقية لا مجرد واجهة شكلية.",
   },
   {
-    title: 'أنظمة تشغيل وإدارة',
-    points: ['ERP مخصص', 'متابعة عملاء ومشاريع', 'تقارير تشغيلية', 'قابلية ربط الأتمتة'],
+    icon: Boxes,
+    title: "أنظمة إدارة وعمليات مخصصة",
+    copy:
+      "بناء أنظمة داخلية لإدارة العملاء، المشاريع، الخدمات، والعمليات اليومية بطريقة منظمة وقابلة للتوسع.",
   },
   {
-    title: 'أتمتة وربط العمليات',
-    points: ['Lead intake', 'رسائل وتنبيهات', 'تحديثات حالة المشاريع', 'ربط بين النماذج وقواعد البيانات'],
+    icon: Workflow,
+    title: "أتمتة وربط الأدوات",
+    copy:
+      "ربط الموقع والنماذج والبريد والمتابعة والتقارير مع أدوات الأتمتة لتقليل التأخير والهدر اليدوي.",
   },
   {
-    title: 'استشارات تنفيذية',
-    points: ['تحليل الوضع الحالي', 'بناء عرض القيمة', 'تنظيم مسارات البيع', 'خطة تنفيذ بالأولويات'],
+    icon: ReceiptText,
+    title: "إدارة الفواتير والتشغيل المالي مبدئيًا",
+    copy:
+      "تجهيز طبقة أولية لإدارة الفواتير والمدفوعات والمتابعة المالية داخل النظام بدل التشتت بين أكثر من أداة.",
+  },
+  {
+    icon: BarChart3,
+    title: "لوحات قياس و KPIs",
+    copy:
+      "بناء واجهات تعرض مؤشرات الأداء المهمة مثل عدد الـ leads، التحويلات، قيمة المشاريع، والتحصيل.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "بنية قابلة للتوسع بأمان",
+    copy:
+      "كل شيء يتم ترتيبه بحيث يمكن إضافة صلاحيات، تسجيل دخول، ولوحة تحكم شاملة لاحقًا بدون إعادة بناء مؤلمة.",
   },
 ];
 
 export default function ServicesPage() {
   return (
     <SiteShell>
-      <section className="container-shell py-16 md:py-24">
-        <SectionTitle
-          eyebrow="خدمات أحمد عيد"
-          title="ما الذي يمكن بناؤه فوق هذه الواجهة؟"
-          description="هذه المرحلة تركز على الواجهة والبراند. لكن الأساس الذي تم ترتيبه يسمح بإضافة نظام داخلي متكامل في المرحلة القادمة دون إعادة البناء من الصفر."
-        />
-        <div className="grid gap-6 md:grid-cols-2">
-          {blocks.map((block) => (
-            <article key={block.title} className="card-surface p-8">
-              <h3 className="mb-5 text-2xl font-bold text-white">{block.title}</h3>
-              <ul className="space-y-3 text-slate-300">
-                {block.points.map((point) => (
-                  <li key={point} className="rounded-2xl border border-white/8 bg-slate-950/35 px-4 py-3">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Link href="/contact" className="btn-primary">اطلب نسخة مخصصة لبيزنسك</Link>
-          <Link href="/case-studies" className="btn-secondary">شاهد المنهج ودراسات الحالة</Link>
+      <section className="section">
+        <div className="container">
+          <SectionTitle
+            kicker="الخدمات"
+            title="حلول رقمية تبني الواجهة والتشغيل معًا"
+            copy="الهدف من الخدمات التي أقدمها هو الجمع بين المظهر القوي، الرسالة البيعية الواضحة، والنظام الداخلي الذي يسمح لك بالإدارة والتوسع بثقة."
+          />
+
+          <div className="grid-3">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article key={service.title} className="glass card">
+                  <div
+                    style={{
+                      width: 54,
+                      height: 54,
+                      display: "grid",
+                      placeItems: "center",
+                      borderRadius: 18,
+                      background: "rgba(110,231,249,0.08)",
+                      border: "1px solid rgba(110,231,249,0.16)",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <Icon size={24} color="#6ee7f9" />
+                  </div>
+                  <h3 style={{ fontSize: "1.2rem" }}>{service.title}</h3>
+                  <p className="section-copy">{service.copy}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
     </SiteShell>

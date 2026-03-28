@@ -1,71 +1,99 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Mail, MessageCircle, PhoneCall } from 'lucide-react';
-import { SectionTitle, SiteShell } from '@/components/site-shell';
+import { Mail, MapPin, MessageCircle, PhoneCall } from "lucide-react";
+import { SectionTitle, SiteShell } from "@/components/site-shell";
 
-export const metadata: Metadata = {
-  title: 'تواصل معي',
-  description: 'ابدأ الحديث عن مشروعك أو اطلب المرحلة التالية من تطوير الموقع.',
-  alternates: { canonical: '/contact' },
-};
-
-const contactOptions = [
+const contactCards = [
   {
-    title: 'بريد إلكتروني',
-    value: 'ahmed.eid.2040@gmail.com',
-    href: 'mailto:ahmed.eid.2040@gmail.com',
-    icon: Mail,
-  },
-  {
-    title: 'واتساب / مكالمة',
-    value: 'أضف رقمك النهائي هنا',
-    href: '#',
-    icon: PhoneCall,
-  },
-  {
-    title: 'رسالة سريعة',
-    value: 'ابدأ بجملة: عندي مشروع وأريد النسخة التالية',
-    href: 'mailto:ahmed.eid.2040@gmail.com?subject=مرحلة%20ثانية%20للموقع',
     icon: MessageCircle,
+    title: "واتساب",
+    value: "أضف رقمك النهائي هنا",
+    note: "أفضل قناة للبداية السريعة وجمع تفاصيل المشروع.",
+  },
+  {
+    icon: Mail,
+    title: "البريد الإلكتروني",
+    value: "ahmed.eid.2040@gmail.com",
+    note: "مناسب لاستقبال المتطلبات المنظمة أو الملفات المرتبطة بالمشروع.",
+  },
+  {
+    icon: MapPin,
+    title: "النطاق الجغرافي",
+    value: "مصر + الخليج",
+    note: "العمل عن بُعد مع استهداف واضح لسوق السعودية والإمارات.",
   },
 ];
 
 export default function ContactPage() {
   return (
     <SiteShell>
-      <section className="container-shell py-16 md:py-24">
-        <SectionTitle
-          eyebrow="التواصل"
-          title="الخطوة التالية واضحة: ابدأ بمتطلباتك ثم ابنِ المرحلة الثانية"
-          description="هذه الصفحة مقصودة لتكون بسيطة ومباشرة. يمكنك لاحقًا تحويلها إلى نموذج متصل بقاعدة بيانات، CRM، وAutomation flows."
-        />
-        <div className="grid gap-6 lg:grid-cols-[1fr,0.9fr]">
-          <div className="card-surface p-8">
-            <h3 className="mb-5 text-2xl font-bold text-white">ماذا تضيف في المرحلة القادمة؟</h3>
-            <ul className="space-y-4 leading-8 text-slate-300">
-              <li>نموذج تواصل مرتبط بقاعدة البيانات.</li>
-              <li>إدارة Leads داخل لوحة تحكم.</li>
-              <li>تصنيف العملاء والخدمات المطلوبة.</li>
-              <li>إصدار عروض أسعار وفواتير أولية.</li>
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <Link href="/services" className="btn-secondary">ارجع إلى الخدمات</Link>
-              <Link href="/case-studies" className="btn-primary">راجع المنهج</Link>
+      <section className="section">
+        <div className="container grid-2">
+          <div>
+            <SectionTitle
+              kicker="تواصل معي"
+              title="جاهز تبني موقعًا يبيعك ونظامًا يوسعك؟"
+              copy="املأ النموذج المبدئي، وسأساعدك في تحديد أنسب نقطة بداية حسب وضعك الحالي: واجهة بيع فقط، أو واجهة + نظام تشغيل داخلي، أو خارطة انتقال كاملة."
+            />
+
+            <div className="grid-1" style={{ display: "grid", gap: "1rem" }}>
+              {contactCards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <div key={card.title} className="glass card">
+                    <div style={{ display: "flex", gap: "0.9rem", alignItems: "flex-start" }}>
+                      <div
+                        style={{
+                          width: 48,
+                          height: 48,
+                          display: "grid",
+                          placeItems: "center",
+                          borderRadius: 16,
+                          background: "rgba(110,231,249,0.08)",
+                          border: "1px solid rgba(110,231,249,0.16)",
+                        }}
+                      >
+                        <Icon size={22} color="#6ee7f9" />
+                      </div>
+                      <div>
+                        <h3 style={{ marginBottom: "0.35rem" }}>{card.title}</h3>
+                        <p style={{ fontWeight: 800, margin: 0 }}>{card.value}</p>
+                        <p className="small-muted">{card.note}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <div className="grid gap-4">
-            {contactOptions.map((option) => {
-              const Icon = option.icon;
-              return (
-                <a key={option.title} href={option.href} className="card-surface block p-6 transition hover:border-cyan-300/30 hover:bg-white/7">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-300">
-                    <Icon className="size-5" />
-                  </div>
-                  <p className="mb-2 text-xl font-bold text-white">{option.title}</p>
-                  <p className="leading-7 text-slate-400">{option.value}</p>
-                </a>
-              );
-            })}
+
+          <div className="glass card" style={{ background: "var(--card-strong)" }}>
+            <h3 style={{ fontSize: "1.6rem", marginTop: 0 }}>نموذج تواصل مبدئي</h3>
+            <p className="small-muted">
+              هذه نسخة واجهة فقط في المرحلة الحالية. النموذج هنا ثابت بصريًا، ويمكن ربطه لاحقًا بقاعدة بيانات أو
+              بريد أو WhatsApp API أو n8n.
+            </p>
+
+            <form style={{ display: "grid", gap: "0.9rem", marginTop: "1rem" }}>
+              <input className="field" placeholder="الاسم" />
+              <input className="field" placeholder="البريد الإلكتروني" />
+              <input className="field" placeholder="رقم الموبايل أو الواتساب" />
+              <select className="field" defaultValue="">
+                <option value="" disabled>
+                  نوع الخدمة المطلوبة
+                </option>
+                <option>موقع شخصي / تجاري</option>
+                <option>لوحة تحكم أو نظام داخلي</option>
+                <option>أتمتة وربط أدوات</option>
+                <option>خطة تنفيذ كاملة</option>
+              </select>
+              <textarea
+                className="textarea"
+                placeholder="اكتب نبذة سريعة عن المشروع أو الوضع الحالي الذي تريد تطويره"
+              />
+              <button type="button" className="button button-primary" style={{ width: "100%" }}>
+                <PhoneCall size={18} />
+                إرسال الطلب
+              </button>
+            </form>
           </div>
         </div>
       </section>

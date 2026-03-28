@@ -1,82 +1,109 @@
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+import Link from "next/link";
+import { ArrowLeft, PhoneCall } from "lucide-react";
 
-const navItems = [
-  { href: '/', label: 'الرئيسية' },
-  { href: '/services', label: 'الخدمات' },
-  { href: '/case-studies', label: 'دراسات الحالة' },
-  { href: '/contact', label: 'تواصل معي' },
+const links = [
+  { href: "/", label: "الرئيسية" },
+  { href: "/services", label: "الخدمات" },
+  { href: "/case-studies", label: "دراسات الحالة" },
+  { href: "/contact", label: "تواصل معي" },
+  { href: "/login", label: "تسجيل الدخول" },
 ];
 
-export function SiteShell({ children }: { children: ReactNode }) {
+export function SectionTitle({
+  kicker,
+  title,
+  copy,
+}: {
+  kicker: string;
+  title: string;
+  copy: string;
+}) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,#11203f_0%,#050816_32%,#02040c_72%)] text-slate-100">
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-cyan-500/12 blur-3xl" />
-        <div className="absolute -left-16 top-72 h-72 w-72 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute -right-16 bottom-20 h-72 w-72 rounded-full bg-indigo-600/10 blur-3xl" />
-      </div>
-      <header className="sticky top-0 z-50 border-b border-white/8 bg-slate-950/55 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <Link href="/" className="text-lg font-extrabold tracking-tight text-white">
-            أحمد عيد <span className="text-cyan-400">.</span>
-          </Link>
-          <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-white">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <Link
-            href="/contact"
-            className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400/20 hover:text-white"
-          >
-            احجز مكالمة تعريفية
-          </Link>
-        </div>
-      </header>
-      <main>{children}</main>
-      <footer className="border-t border-white/8 bg-slate-950/40">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 text-sm text-slate-400 lg:grid-cols-[1.2fr,1fr,1fr] lg:px-8">
-          <div>
-            <p className="mb-3 text-base font-bold text-white">موقع أحمد عيد — المرحلة الأولى</p>
-            <p className="max-w-xl leading-7">
-              واجهة براند شخصي احترافية مصممة لتكون نموذجًا حيًا للجودة التي تُباع للعميل: سرعة، وضوح، هيكلة محتوى، ورسائل بيع عملية.
-            </p>
-          </div>
-          <div>
-            <p className="mb-3 font-semibold text-white">روابط أساسية</p>
-            <ul className="space-y-2">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="transition hover:text-white">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="mb-3 font-semibold text-white">المرحلة القادمة</p>
-            <ul className="space-y-2 leading-6">
-              <li>لوحة تحكم لإدارة المحتوى والعملاء.</li>
-              <li>إضافة قاعدة بيانات و CRM أساسي.</li>
-              <li>ربط نماذج التواصل والتقارير التشغيلية.</li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+    <div style={{ marginBottom: "1.5rem" }}>
+      <span className="kicker">{kicker}</span>
+      <h2 className="section-title">{title}</h2>
+      <p className="section-copy" style={{ maxWidth: "64ch" }}>
+        {copy}
+      </p>
     </div>
   );
 }
 
-export function SectionTitle({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-10 max-w-3xl">
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/80">{eyebrow}</p>
-      <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white md:text-4xl">{title}</h2>
-      <p className="text-lg leading-8 text-slate-400">{description}</p>
-    </div>
+    <>
+      <header style={{ position: "sticky", top: 0, zIndex: 40, backdropFilter: "blur(12px)" }}>
+        <div className="container" style={{ paddingTop: "1rem" }}>
+          <div
+            className="glass"
+            style={{
+              borderRadius: 999,
+              padding: "0.9rem 1rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "1rem",
+            }}
+          >
+            <Link href="/" style={{ fontWeight: 900, fontSize: "1.1rem" }}>
+              Ahmed Eid
+            </Link>
+
+            <nav
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                flexWrap: "wrap",
+                justifyContent: "center",
+              }}
+            >
+              {links.map((link) => (
+                <Link key={link.href} href={link.href} style={{ color: "#dbe6f2", fontWeight: 700 }}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link href="/contact" className="button button-primary">
+              احجز مكالمة
+              <PhoneCall size={18} />
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main>{children}</main>
+
+      <footer className="footer-line" style={{ padding: "1.6rem 0", marginTop: "2rem" }}>
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div>
+            <strong style={{ display: "block", marginBottom: "0.3rem" }}>Ahmed Eid</strong>
+            <span className="small-muted">
+              مواقع احترافية، أنظمة تشغيل داخلية، وأتمتة أعمال قابلة للتوسع.
+            </span>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+            <Link href="/services" className="button button-secondary">
+              استعرض الخدمات
+              <ArrowLeft size={18} />
+            </Link>
+            <Link href="/login" className="button button-secondary">
+              دخول لوحة التحكم
+            </Link>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

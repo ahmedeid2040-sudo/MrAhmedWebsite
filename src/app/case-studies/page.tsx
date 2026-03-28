@@ -1,56 +1,68 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { SectionTitle, SiteShell } from '@/components/site-shell';
+import { ArrowUpLeft, CheckCircle2 } from "lucide-react";
+import { SectionTitle, SiteShell } from "@/components/site-shell";
 
-export const metadata: Metadata = {
-  title: 'دراسات الحالة',
-  description: 'كيف تم تحويل القالب الأولي إلى واجهة احترافية قابلة للتوسع.',
-  alternates: { canonical: '/case-studies' },
-};
-
-const items = [
+const studies = [
   {
-    title: 'قبل التعديل',
-    body: 'المشروع كان صفحة واحدة فقط، به Branding قديم، وروابط محدودة، ولا يوضح بوضوح المرحلة الحالية ولا المرحلة القادمة.',
+    title: "موقع شخصي احترافي يعمل كأداة بيع",
+    result: "رفع الثقة وتحسين وضوح الرسالة وتجهيز الموقع للتوسع لاحقًا إلى لوحة تحكم كاملة.",
+    points: [
+      "هيكلة الرسالة التسويقية من أول الشاشة وحتى الدعوة لاتخاذ الإجراء.",
+      "تحسين الشكل العام والـ visual hierarchy بدل صفحة بورتفوليو بسيطة.",
+      "تجهيز صفحات داخلية للتوسع في الخدمات ودراسات الحالة والتواصل.",
+    ],
   },
   {
-    title: 'بعد التعديل',
-    body: 'أصبح هناك تموضع واضح، صفحات أساسية متعددة، Metadata محسّنة، وهيكل محتوى أنسب للعميل ومحركات البحث.',
+    title: "الانتقال من شغل متفرق إلى منصة تشغيل",
+    result: "تقليل التشتت بين الأدوات المختلفة والاستعداد لإدارة العملاء والمشاريع من مكان واحد.",
+    points: [
+      "وضع تصور واضح للموديولات الأساسية: Leads, Clients, Projects, Invoices.",
+      "إضافة صفحة دخول كبداية منطقية قبل بناء الـ dashboard.",
+      "التحضير لبنية تقنية قابلة للنمو بدل قرارات مؤقتة قصيرة الأجل.",
+    ],
   },
   {
-    title: 'ما الذي سيأتي لاحقًا',
-    body: 'إضافة لوحة تحكم، CRM، إدارة عملاء ومشاريع وفواتير، وربط نماذج التواصل بقاعدة بيانات وتشغيل آلي.',
+    title: "موقع يكون Demo حيًا لقدراتك",
+    result: "الموقع نفسه يصبح عينة مباشرة يراها العميل فيحكم على جودة التنفيذ من أول زيارة.",
+    points: [
+      "تصميم حديث وداكن يعطي إحساسًا تقنيًا واحترافيًا.",
+      "محتوى عربي واضح مناسب للسوق المصري والخليجي.",
+      "بنية SEO نظيفة قابلة للتطوير لاحقًا بالمحتوى والدراسات والمقالات.",
+    ],
   },
 ];
 
 export default function CaseStudiesPage() {
   return (
     <SiteShell>
-      <section className="container-shell py-16 md:py-24">
-        <SectionTitle
-          eyebrow="منهج التطوير"
-          title="هذه المرحلة ليست الشكل النهائي — لكنها أصبحت أساسًا احترافيًا حقيقيًا"
-          description="الهدف في المرحلة الأولى ليس إضافة كل شيء مرة واحدة، بل بناء واجهة قوية ومرتبة يمكن أن تنمو فوقها بقية المنصة بكفاءة وسرعة."
-        />
-        <div className="grid gap-6 lg:grid-cols-3">
-          {items.map((item, index) => (
-            <article key={item.title} className="card-surface p-8">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/80">0{index + 1}</p>
-              <h3 className="mb-4 text-2xl font-bold text-white">{item.title}</h3>
-              <p className="leading-8 text-slate-400">{item.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-10 card-surface p-8">
-          <h3 className="mb-4 text-2xl font-bold text-white">مكاسب المرحلة الأولى</h3>
-          <ul className="space-y-3 leading-8 text-slate-300">
-            <li>وضوح أكبر للرسالة البيعية.</li>
-            <li>تحسين الانطباع الأول والهيبة البصرية.</li>
-            <li>صفحات قابلة للفهرسة بدل الاعتماد على صفحة وحيدة فقط.</li>
-            <li>أساس جاهز لإضافة الـ CMS وAdmin في المرحلة الثانية.</li>
-          </ul>
-          <div className="mt-6">
-            <Link href="/contact" className="btn-primary">ابدأ المرحلة الثانية</Link>
+      <section className="section">
+        <div className="container">
+          <SectionTitle
+            kicker="دراسات الحالة"
+            title="أمثلة على نوع النتائج التي يستهدفها هذا المشروع"
+            copy="هذه الصفحة تعرض أمثلة قريبة من نوع القيمة التي تقدمها: تحسين الانطباع، رفع التحويل، وتجهيز التشغيل الداخلي بشكل ينعكس على النمو."
+          />
+
+          <div className="grid-3">
+            {studies.map((study) => (
+              <article key={study.title} className="glass card">
+                <h3 style={{ fontSize: "1.25rem", marginBottom: "0.7rem" }}>{study.title}</h3>
+                <p className="section-copy" style={{ marginBottom: "1rem" }}>
+                  <strong style={{ color: "#fff" }}>النتيجة:</strong> {study.result}
+                </p>
+                <ul className="list-clean">
+                  {study.points.map((point) => (
+                    <li key={point}>
+                      <CheckCircle2 size={18} color="#6ee7f9" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ marginTop: "1.1rem", color: "#6ee7f9", fontWeight: 800, display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                  قراءة كتوجه تنفيذي
+                  <ArrowUpLeft size={16} />
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
